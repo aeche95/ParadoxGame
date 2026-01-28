@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -17,7 +18,7 @@ public class MainMenuManager : MonoBehaviour
 
     public void OnStartButtonPressed()
     {
-        SceneManager.LoadScene("Level1");
+        StartCoroutine(ChangeSceneCorroutine());
     }
 
     public void OnSettingsButtonPressed()
@@ -28,5 +29,11 @@ public class MainMenuManager : MonoBehaviour
     public void OnQuitButtonPressed()
     {
         Application.Quit();
+    }
+
+    public IEnumerator ChangeSceneCorroutine()
+    {
+        yield return new WaitForSeconds(1);
+        SceneManager.LoadScene("Level1");
     }
 }
