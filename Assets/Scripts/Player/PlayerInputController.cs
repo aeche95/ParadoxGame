@@ -74,7 +74,7 @@ public class PlayerInputController : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Container"))
         {
-            collision.gameObject.GetComponent<Container>().Interact();
+            collision.gameObject.GetComponent<Container>().Interact(gameObject);
         }
     }
 

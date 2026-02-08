@@ -1,7 +1,7 @@
 using UnityEngine;
 
 
-enum Attribute
+public enum Attribute
 {
     MaxHealth,
     MaxMana,
@@ -11,9 +11,17 @@ enum Attribute
     Endurance
 }
 
-enum Stat
+public enum Stat
 {
     Health,
     Mana,
     Stamina
+}
+
+public enum StorableID
+{
+    Sword,
+    Shield,
+    Potion,
+    Amulet,
 }

@@ -43,10 +43,34 @@ namespace StarterAssets
 		{
 			SprintInput(value.isPressed);
 		}
+
+		public void OnMove(InputAction.CallbackContext context)
+		{
+			MoveInput(context.ReadValue<Vector2>());
+		}
+
+        public void OnLook(InputAction.CallbackContext context)
+        {
+            if (cursorInputForLook)
+            {
+                LookInput(context.ReadValue<Vector2>());
+            }
+        }
+
+        public void OnJump(InputAction.CallbackContext context)
+        {
+            JumpInput(context.ReadValue<bool>());
+        }
+
+        public void OnSprint(InputAction.CallbackContext context)
+        {
+            SprintInput(context.ReadValue<bool>());
+        }
+
 #endif
 
 
-		public void MoveInput(Vector2 newMoveDirection)
+        public void MoveInput(Vector2 newMoveDirection)
 		{
 			move = newMoveDirection;
 		} 

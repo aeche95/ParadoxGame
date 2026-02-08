@@ -1,29 +1,56 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Container : MonoBehaviour, IInteractable
 {
     [SerializeField]
-    Example[] objects = {new Example(), new Example() };
+    List<IStorable> itemsList = new();
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+   
+    public void AddItem(Item item)
     {
-        
+        itemsList.Add(item);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void RemoveItem(StorableID ItemID)
     {
-        
+        foreach(IStorable item in itemsList)
+        {
+            if (item.ID == ItemID)
+            {
+                itemsList.Remove(item);
+            }
+        }
     }
 
-    public void AddExample(Example example)
+    public IStorable FindItem(StorableID ItemID)
     {
-        objects.SetValue(example, 0);
+        foreach (IStorable item in itemsList)
+        {
+            if (item.ID == ItemID)
+            {
+                return item;
+            }
+        }
+        return null;
     }
 
-    public void Interact()
+    public bool HasItem(StorableID ItemID)
+    {
+        foreach (IStorable item in itemsList)
+        {
+            if (item.ID == ItemID)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void Interact(GameObject instigator)
     {
         Debug.Log($"Interacted with {gameObject.name}");
+        return;
+
     }
 }
