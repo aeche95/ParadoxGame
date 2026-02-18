@@ -20,8 +20,16 @@ public enum Stat
 
 public enum StorableID
 {
-    Sword,
+    Axe,
+    Bow,
     Shield,
-    Potion,
+    Elixir,
     Amulet,
+    Armor,
+    Flail,
+    Helmet,
+    Ring,
+    Shurikens,
+    Stone,
+    Sword
 }

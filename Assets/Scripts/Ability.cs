@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class Ability : MonoBehaviour, IInteractable
+public class Ability : Interactable
 {
-    public void Interact(GameObject instigator)
+    public override void Interact(GameObject instigator)
     {
         Abilities abilitiesComponent = instigator.GetComponent<Abilities>();
         if (abilitiesComponent != null)

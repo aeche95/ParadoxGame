@@ -17,7 +17,7 @@ public interface IConsumable
 
 public interface IStorable
 {
-    StorableID ID { get; set; }
+    StorableID ID { get;}
     public void Store();
     public void Remove();
 }

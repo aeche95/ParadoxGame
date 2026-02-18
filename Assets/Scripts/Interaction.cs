@@ -11,35 +11,8 @@ public class Interaction : MonoBehaviour
     [SerializeField]
     GameObject source;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-
-        Interactable interactionComponent = other.gameObject.GetComponent<Interactable>();
-        if (interactionComponent != null) {
-            interactable = interactionComponent;
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        Interactable interactionComponent = other.gameObject.GetComponent<Interactable>();
-        if (interactable != null && interactionComponent != null && interactable == interactionComponent)
-        {
-            interactable = null;
-        }
-    }
+    [SerializeField]
+    LayerMask layerMask;
 
     public void OnInteract()
     {
@@ -49,13 +22,13 @@ public class Interaction : MonoBehaviour
             //interactable.Interact();
             //Debug.Log($"Interacting with {interactable.gameObject.name}");
         }
-        Vector3 forwardVector = gameObject.transform.forward;
+        Vector3 forwardVector = source.transform.forward;
         Vector3 origin = source.transform.position;
-        RaycastHit[] hits = Physics.RaycastAll(origin, forwardVector, maxDistance);
-        Debug.DrawRay(origin, forwardVector*maxDistance, Color.azure, 20);
+        RaycastHit[] hits = Physics.RaycastAll(origin, forwardVector, maxDistance, layerMask);
+        Debug.DrawRay(origin, forwardVector * maxDistance, Color.azure, 20);
         foreach (RaycastHit hit in hits )
         {
-            Debug.Log("found raycast hit, ");
+            Debug.Log($"found raycast hit, {hit.rigidbody.gameObject.name}");
             Interactable interactable = hit.rigidbody.gameObject.GetComponent<Interactable>();
             if (interactable != null)
             {

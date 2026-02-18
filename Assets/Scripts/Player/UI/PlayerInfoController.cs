@@ -1,12 +1,7 @@
 using UnityEngine;
 
-public class Quest : Interactable
+public class PlayerInfoController : MonoBehaviour
 {
-    public override void Interact(GameObject instigator)
-    {
-        throw new System.NotImplementedException();
-    }
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

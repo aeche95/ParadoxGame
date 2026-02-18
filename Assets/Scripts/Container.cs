@@ -1,53 +1,52 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Container : MonoBehaviour, IInteractable
+public class Container : Interactable
 {
     [SerializeField]
-    List<IStorable> itemsList = new();
+    List<StorableID> IDList = new();
 
-   
-    public void AddItem(Item item)
+    [SerializeField]
+    ItemDatabase itemDatabase;
+
+    [SerializeField]
+    ItemEvents itemEvents;
+
+    private void Start()
     {
-        itemsList.Add(item);
+        foreach (StorableID ID in IDList)
+        {
+            ItemData data = FindItem(ID);
+            itemEvents.ItemReceivedEvent.Invoke(data);
+        }
+    }
+    public void AddItem(StorableID ID)
+    {
+        IDList.Add(ID);
+        ItemData data = FindItem(ID);
+        itemEvents.ItemReceivedEvent.Invoke(data);
     }
 
-    public void RemoveItem(StorableID ItemID)
+    public void RemoveItem(StorableID ID)
     {
-        foreach(IStorable item in itemsList)
+        if (IDList.Contains(ID))
         {
-            if (item.ID == ItemID)
-            {
-                itemsList.Remove(item);
-            }
+            IDList.Remove(ID);
+            itemEvents.ItemRemovedEvent.Invoke(ID);
         }
     }
 
-    public IStorable FindItem(StorableID ItemID)
+    public ItemData FindItem(StorableID ItemID)
     {
-        foreach (IStorable item in itemsList)
-        {
-            if (item.ID == ItemID)
-            {
-                return item;
-            }
-        }
-        return null;
+        return itemDatabase.GetItem(ItemID);
     }
 
     public bool HasItem(StorableID ItemID)
     {
-        foreach (IStorable item in itemsList)
-        {
-            if (item.ID == ItemID)
-            {
-                return true;
-            }
-        }
-        return false;
+        return IDList.Contains(ItemID);
     }
 
-    public void Interact(GameObject instigator)
+    public override void Interact(GameObject instigator)
     {
         Debug.Log($"Interacted with {gameObject.name}");
         return;

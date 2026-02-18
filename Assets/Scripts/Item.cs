@@ -1,36 +1,13 @@
 using UnityEngine;
 
-public class Item : MonoBehaviour , IInteractable, IStorable
+public class Item : Interactable, IStorable
 {
-    //[SerializeField]
-    //ItemID id;
-
     [SerializeField]
-    Texture2D iconTexture;
+    ItemData itemDataSO;
 
-    [SerializeField]
-    string Name;
+    public StorableID ID { get => itemDataSO.ID; }
 
-    [SerializeField]
-    int MaxStack = 1;
-
-    [SerializeField]
-    StorableID storeID;
-
-    public StorableID ID { get => storeID; set => storeID = value; }
-
-    public StorableID GetID()
-    {
-        return storeID;
-    }
-
-
-    //public ItemID GetItemID() 
-    //{ 
-    //    return id; 
-    //}
-
-    public void Interact(GameObject instigator)
+    public override void Interact(GameObject instigator)
     {
         throw new System.NotImplementedException();
     }

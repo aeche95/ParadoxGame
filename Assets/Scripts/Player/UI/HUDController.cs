@@ -1,11 +1,9 @@
 using UnityEngine;
 
-public class Quest : Interactable
+public class HUDController : MonoBehaviour
 {
-    public override void Interact(GameObject instigator)
-    {
-        throw new System.NotImplementedException();
-    }
+    [SerializeField]
+    QuickInventoryController inventoryController;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -17,5 +15,10 @@ public class Quest : Interactable
     void Update()
     {
         
+    }
+
+    public void AddItemToInventory(ItemData item)
+    {
+        inventoryController.AddItem(item);
     }
 }
