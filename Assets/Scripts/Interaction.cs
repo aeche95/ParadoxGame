@@ -3,7 +3,7 @@ using UnityEngine;
 public class Interaction : MonoBehaviour
 {
     [SerializeField]
-    float maxDistance = 100.0f;
+    public float maxDistance = 100.0f;
 
     [SerializeField]
     Interactable interactable = null;
